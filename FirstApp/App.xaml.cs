@@ -22,10 +22,12 @@ namespace FirstApp
             // ViewModels
             services.AddTransient<TestViewModel>();
             services.AddTransient<StudentsViewModels>();
+            services.AddTransient<StudentViewModels>();
 
             //Views
             services.AddSingleton<ListStudentPage>();
             services.AddSingleton<ItemStudentPage>();
+            services.AddSingleton<StudentPage>();
 
             return services.BuildServiceProvider();
         }

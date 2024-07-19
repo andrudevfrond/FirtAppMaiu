@@ -9,4 +9,8 @@
         public string Name { get; set; }
         public string LastName { get; set; }
     }
+
+    public abstract class DataBaseModels {
+        public int Id { get; set; }
+    }
 }

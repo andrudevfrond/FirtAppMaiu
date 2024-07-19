@@ -10,7 +10,7 @@
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate vi:ListStudentPage}"
+        ContentTemplate="{DataTemplate vi:StudentPage}"
         Route="MainPage" />
 
 </Shell>
