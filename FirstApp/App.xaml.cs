@@ -1,4 +1,5 @@
-﻿using FirstApp.ViewModels;
+﻿
+using FirstApp.Views.Templates;
 
 namespace FirstApp
 {
@@ -20,6 +21,11 @@ namespace FirstApp
 
             // ViewModels
             services.AddTransient<TestViewModel>();
+            services.AddTransient<StudentsViewModels>();
+
+            //Views
+            services.AddSingleton<ListStudentPage>();
+            services.AddSingleton<ItemStudentPage>();
 
             return services.BuildServiceProvider();
         }

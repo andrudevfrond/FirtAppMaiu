@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FirstApp.Views.ListStudentPage"
+             xmlns:mo="clr-namespace:FirstApp.Models"
+             xmlns:vm="clr-namespace:FirstApp.ViewModels"
+             xmlns:te="clr-namespace:FirstApp.Views.Templates"
+             Title="Students">
+    <VerticalStackLayout x:DataType="vm:StudentsViewModels">
+        <Button Text="Listar Alumnos" Command="{Binding GetStudendsCommand}"></Button>
+        <CollectionView ItemsSource="{Binding Students}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="mo:StudentModels">
+                    <te:ItemStudentPage/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>
