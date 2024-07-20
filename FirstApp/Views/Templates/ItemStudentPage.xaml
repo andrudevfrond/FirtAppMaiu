@@ -1,10 +1,66 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FirstApp.Views.Templates.ItemStudentPage"
-             xmlns:mo="clr-namespace:FirstApp.Models">
-    <HorizontalStackLayout Padding="2" Background="Beige" x:DataType="mo:StudentModels">
-        <Label Text="{Binding Name}"/>
-        <Label Text="{Binding LastName}"/>
-    </HorizontalStackLayout>
+<ContentView
+    x:Class="FirstApp.Views.Templates.ItemStudentPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mo="clr-namespace:FirstApp.Models"
+    xmlns:mv="clr-namespace:FirstApp.ViewModels">
+
+    <ContentView.Resources>
+        <Style x:Key="register" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource Primary}"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+
+        <Style x:Key="Id" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource White}"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+
+    </ContentView.Resources>
+
+    <Grid Padding="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border BackgroundColor="{StaticResource Primary}">
+            <Border.StrokeShape>
+                <RoundRectangle BackgroundColor="{StaticResource Primary}" CornerRadius="25,25,25,25"/>
+            </Border.StrokeShape>
+            <Label Style="{StaticResource Id}" Text="{Binding Id}"/>
+        </Border>
+        <HorizontalStackLayout Grid.Column="1">
+            <Label Style="{StaticResource register}" Text="{Binding Name}"/>
+            <Label Style="{StaticResource register}" Text="{Binding LastName}"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout
+            Grid.Column="2"
+            x:DataType="mv:StudentsViewModels"
+            HorizontalOptions="Center">
+            <ImageButton
+                Command="{Binding Source={RelativeSource AncestorType={x:Type mv:StudentsViewModels}}, Path=EditStudentCommand}"
+                CommandParameter="{Binding .}"
+                Source="edit.png"
+                WidthRequest="40"/>
+            <ImageButton
+                Command="{Binding Source={RelativeSource AncestorType={x:Type mv:StudentsViewModels}}, Path=DeleteStudent}"
+                CommandParameter="{Binding .}"
+                Source="trash.png"
+                WidthRequest="40"/>
+        </HorizontalStackLayout>
+        <BoxView Grid.Row="1"
+                 Grid.ColumnSpan="3"
+                 BackgroundColor="{StaticResource Gray200}"
+                 HeightRequest="1"/>
+
+    </Grid>
+
+
+
 </ContentView>

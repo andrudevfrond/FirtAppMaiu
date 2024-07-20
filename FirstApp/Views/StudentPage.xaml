@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FirstApp.Views.StudentPage"
-             xmlns:mv="clr-namespace:FirstApp.ViewModels"
-             Title="StudentPage">
-    <VerticalStackLayout x:DataType="mv:StudentViewModels">
+<ContentPage
+    x:Class="FirstApp.Views.StudentPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mv="clr-namespace:FirstApp.ViewModels"
+    Title="StudentPage"
+    x:DataType="mv:StudentViewModels">
+    <VerticalStackLayout
+        Padding="0,10,0,0"
+        HorizontalOptions="Center"
+        WidthRequest="200">
         <Entry
             Text="{Binding Name}"
             VerticalOptions="Center"
@@ -16,16 +21,40 @@
             HorizontalOptions="Center"
             Placeholder="Ingrese el apellido"/>
 
-        <CollectionView ItemsSource="{Binding Errors}">
+        <CollectionView
+            Grid.Row="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            Margin="0,10"
+            BackgroundColor="LightCoral"
+            ItemsSource="{Binding Errors}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Label Text="{Binding .}"
                            HorizontalOptions="Center"
-                           VerticalOptions="Center" Background="LightCoral"></Label>
+                           MaximumWidthRequest="190"
+                           VerticalOptions="Center"
+                           TextColor="White"/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-
-        <Button Text="Guardar" Command="{Binding SaveStudentCommand}"/>
+        <VerticalStackLayout
+            HorizontalOptions="Center">
+            <ImageButton
+                Command="{Binding SaveStudentCommand}"
+                IsEnabled="{Binding IsEnabled}"
+                IsVisible="{Binding IsEnabled}"
+                Source="save.png"/>
+            <ActivityIndicator
+                IsEnabled="{Binding IsBusy}"
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"/>
+            <Frame BackgroundColor="Green" IsVisible="{Binding IsVisible}">
+                <Label FontSize="Title"
+                       HorizontalOptions="Center"
+                       Text="{Binding Result}"
+                       TextColor="White"/>
+            </Frame>
+        </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

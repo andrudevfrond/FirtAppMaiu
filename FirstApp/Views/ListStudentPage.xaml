@@ -5,15 +5,41 @@
              xmlns:mo="clr-namespace:FirstApp.Models"
              xmlns:vm="clr-namespace:FirstApp.ViewModels"
              xmlns:te="clr-namespace:FirstApp.Views.Templates"
-             Title="Students">
-    <VerticalStackLayout x:DataType="vm:StudentsViewModels">
-        <Button Text="Listar Alumnos" Command="{Binding GetStudendsCommand}"></Button>
-        <CollectionView ItemsSource="{Binding Students}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="mo:StudentModels">
-                    <te:ItemStudentPage/>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </VerticalStackLayout>
+             Title="Students"
+             x:DataType="vm:StudentsViewModels">
+    <Grid RowDefinitions="100,*,50">
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <ImageButton
+                Padding="0,10,0,0"
+                Command="{Binding GetStudentsCommand}"
+                IsVisible="{Binding IsReady}"
+                Source="list.png"/>
+            <ImageButton
+                Padding="0,10,0,0"
+                Command="{Binding AddNewCommand}"
+                Source="addnew.png"/>
+        </HorizontalStackLayout>
+        <Frame
+            Grid.Row="1"
+            Margin="10"
+            Background="{StaticResource Gray100}"
+            HorizontalOptions="Center">
+            <RefreshView
+                Command="{Binding GetStudentsCommand}">
+                <CollectionView
+                    x:Name="CollectionView"
+                    BindingContext="{Binding Students}"
+                    ItemsSource="{Binding}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <te:ItemStudentPage/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <Label BackgroundColor="Azure" Text="sin datos para mostrar"/>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </RefreshView>
+        </Frame>
+    </Grid>
 </ContentPage>

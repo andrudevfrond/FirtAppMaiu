@@ -1,7 +1,4 @@
-﻿
-using FirstApp.Views.Templates;
-
-namespace FirstApp
+﻿namespace FirstApp
 {
     public partial class App : Application
     {
@@ -16,8 +13,7 @@ namespace FirstApp
             MainPage = new AppShell();
         }
         private static IServiceProvider ConfigureServices(ServiceCollection services) {
-            // Services
-            services.AddSingleton<IFunctions, Functions>();
+            
 
             // ViewModels
             services.AddTransient<TestViewModel>();
@@ -26,8 +22,14 @@ namespace FirstApp
 
             //Views
             services.AddSingleton<ListStudentPage>();
-            services.AddSingleton<ItemStudentPage>();
+//            services.AddSingleton<ItemStudentPage>();
             services.AddSingleton<StudentPage>();
+
+            // Services
+            services.AddTransient<IFunctions, Functions>();
+            services.AddTransient<IStudents, StudentsService>();
+            services.AddTransient<IDialogService, DialogService>();
+            services.AddTransient<IPath, DbPath>();
 
             return services.BuildServiceProvider();
         }

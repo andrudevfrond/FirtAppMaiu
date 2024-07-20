@@ -9,8 +9,12 @@
     Title="FirstApp">
 
     <ShellContent
-        Title="Home"
+        Title="Listar"
+        ContentTemplate="{DataTemplate vi:ListStudentPage}"
+        Route="ListStudentPage" />
+    <ShellContent
+        Title="Nuevo Estudiante"
         ContentTemplate="{DataTemplate vi:StudentPage}"
-        Route="MainPage" />
+        Route="StudentPage"/>
 
 </Shell>
