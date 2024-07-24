@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vi="clr-namespace:FirstApp.Views"
     xmlns:local="clr-namespace:FirstApp"
-    Shell.FlyoutBehavior="Disabled"
+    Shell.FlyoutBehavior="Flyout"
     Title="FirstApp">
 
     <ShellContent
